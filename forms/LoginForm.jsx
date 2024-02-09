@@ -11,10 +11,13 @@ const LoginForm = () => {
     try {
       const userData = { email, password };
       const response = await loginUser(userData);
-      // Handle successful login
+      if (response.success) {
+        history.push('/about');
+      } else {
+        setError('Unable to login. Please check your credentials.'); 
+      }
     } catch (error) {
-      setError(error.message);
-    }
+      setError('Internal server error. Please try again later.'); 
   };
 
   return (
