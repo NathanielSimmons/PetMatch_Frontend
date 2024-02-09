@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AuthComponent from './AuthComponent';
-import UserProfileComponent from './UserProfileComponent';
-import PetProfileComponent from './PetProfileComponent';
-import MatchManagementComponent from './MatchManagementComponent';
+import AuthComponent from './components/AuthComponent';
+import UserProfileComponent from './components/UserProfileComponent';
+import PetProfileComponent from './components/PetProfileComponent';
+import MatchManagementComponent from './components/MatchManagementComponent';
 
 const App = () => {
   return (
