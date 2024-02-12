@@ -21,6 +21,15 @@ export const signupUser = async (userData) => {
     }
   };
   
+  export const logoutUser = async () => {
+    try {
+      await axios.post(`${baseURL}/users/logout`);
+      window.location.replace('/');
+    } catch (error) {
+      throw new Error(error.response.data.error);
+    }
+  };
+  
   
   export const createPetProfile = async (petData) => {
     try {
