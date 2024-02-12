@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { logoutUser } from '../api/users/logout'
+import { logoutUser } from '../api'
 
 const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      await logout(); // Call your logout API function
+      await logoutUser(); // Call your logout API function
       // Redirect the user to the home page or any other desired page after logout
       navigate('/'); // Redirect to the home page
     } catch (error) {

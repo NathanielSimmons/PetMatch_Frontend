@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../api/users/login';
+import { loginUser } from '../api';
 
 
 const LoginForm = () => {
@@ -13,9 +13,9 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const userData = { email, password };
-      const response = await login(userData);
+      const response = await loginUser(userData);
       if (response.success) {
-        navigate('/'); // Use navigate instead of history.push
+        navigate('/home'); // Use navigate instead of history.push
       } else {
         setError('Unable to login. Please check your credentials.'); 
       }
