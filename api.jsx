@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:4000/api';
 
-// User API calls
+
 export const signupUser = async (userData) => {
     try {
       const response = await axios.post(`${baseURL}/users/signup`, userData);
@@ -21,7 +21,7 @@ export const signupUser = async (userData) => {
     }
   };
   
-  // Pet API calls
+  
   export const createPetProfile = async (petData) => {
     try {
       const response = await axios.post(`${baseURL}/pets`, petData);
@@ -66,4 +66,3 @@ export const signupUser = async (userData) => {
       throw new Error(error.response.data.error);
     }
   };
-// Implement other API call functions for user and pet data, etc.

@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginForm from './forms/LoginForm';
+import LoginForm from '../forms/LoginForm';
 
 const AuthComponent = () => {
   return (
@@ -11,3 +11,4 @@ const AuthComponent = () => {
 }
 
 export default AuthComponent;
+

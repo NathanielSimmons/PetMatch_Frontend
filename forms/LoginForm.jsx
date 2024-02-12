@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { loginUser } from './api';
+import { loginUser } from '../api';
 
 
 const LoginForm = () => {
@@ -14,14 +14,16 @@ const LoginForm = () => {
     try {
       const userData = { email, password };
       const response = await loginUser(userData);
+      console.log('Login response:', response); // Log the response for debugging
       if (response.success) {
         history.push('/about');
       } else {
         setError('Unable to login. Please check your credentials.'); 
       }
     } catch (error) {
+      console.error('Login error:', error); // Log any errors for debugging
       setError('Internal server error. Please try again later.'); 
-  }
+    }
   };
 
   return (
