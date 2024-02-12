@@ -1,14 +1,13 @@
 import React from 'react';
 import LoginForm from '../forms/LoginForm';
 
-const AuthComponent = () => {
+const AuthComponent = ({ onLogin }) => {
   return (
     <div>
-      <h2>Login</h2>
-      <LoginForm />
+      <LoginForm onLogin={onLogin} />
     </div>
   );
-}
+};
 
 export default AuthComponent;
 

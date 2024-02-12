@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,9 +13,10 @@ const LoginForm = () => {
     try {
       const userData = { email, password };
       await loginUser(userData);
+      onLogin(); // Notify parent component about successful login
       navigate('/'); // Navigate to the home page
     } catch (error) {
-      setError('Internal server error. Please try again later.');
+      setError('Invalid email or password. Please try again.');
     }
   };
 

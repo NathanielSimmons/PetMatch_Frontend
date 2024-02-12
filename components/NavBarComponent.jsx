@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButtonComponent from './LogOutButtonComponent';
 
-const NavBar = ({ isLoggedIn, onLogout }) => {
+const NavBar = ({ isLoggedIn }) => {
   return (
     <nav>
       <ul>
@@ -20,7 +20,7 @@ const NavBar = ({ isLoggedIn, onLogout }) => {
             <li><Link to="/update-profile">Update Profile</Link></li>
             <li><Link to="/match">Match</Link></li>
             <li><Link to="/about">About</Link></li>
-            <li><LogOutButtonComponent />Log Out</li>
+            <li><LogOutButtonComponent /></li>
           </>
         )}
       </ul>
@@ -28,6 +28,5 @@ const NavBar = ({ isLoggedIn, onLogout }) => {
   );
 }
 
-
-
 export default NavBar;
+
