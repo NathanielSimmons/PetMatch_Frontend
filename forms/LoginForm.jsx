@@ -25,12 +25,31 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input 
+          type="email" 
+          id="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          placeholder="Enter your email" 
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input 
+          type="password" 
+          id="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          placeholder="Enter your password" 
+        />
+      </div>
       <button type="submit">Login</button>
       {error && <p>{error}</p>}
     </form>
   );
 }
+
 
 export default LoginForm;
