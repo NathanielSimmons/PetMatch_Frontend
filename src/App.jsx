@@ -16,7 +16,6 @@ const App = () => {
     setIsLoggedIn(false);
   };
 
-const App = () => {
   return (
     <div>
     <NavBarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
