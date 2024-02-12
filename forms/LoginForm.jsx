@@ -13,9 +13,9 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const userData = { email, password };
-      const response = await loginUser(userData);
+      const response = await login(userData);
       if (response.success) {
-        navigate('/home'); // Use navigate instead of history.push
+        navigate('/'); // Use navigate instead of history.push
       } else {
         setError('Unable to login. Please check your credentials.'); 
       }
