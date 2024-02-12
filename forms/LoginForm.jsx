@@ -7,7 +7,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Using useNavigate instead of useHistory
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ const LoginForm = () => {
       const userData = { email, password };
       const response = await loginUser(userData);
       if (response.success) {
-        navigate('/home'); // Use navigate instead of history.push
+        navigate('/home'); 
       } else {
         setError('Unable to login. Please check your credentials.'); 
       }
