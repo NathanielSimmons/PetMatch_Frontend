@@ -18,13 +18,19 @@ const SignUpComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:4000/api/users/signup', formData);
-      // Handle successful signup (e.g., redirect user to login page)
+        
+        const response = await axios.post('http://localhost:4000/api/users/signup', formData);
+
+        
+        if (response.status === 201) {
+            window.location.href = '/auth';
+        }
     } catch (error) {
-      console.error('Error signing up:', error);
-      // Handle signup error (e.g., display error message to user)
+        
+        console.error('Error signing up:', error);
+        
     }
-  };
+};
 
   return (
     <div>
