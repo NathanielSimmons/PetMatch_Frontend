@@ -9,12 +9,6 @@ import HomeComponent from '../components/HomeComponent';
 import NavBarComponent from '../components/NavBarComponent';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogout = () => {
-    // Handle logout logic, such as clearing local storage, etc.
-    setIsLoggedIn(false);
-  };
 
   return (
     <div>
