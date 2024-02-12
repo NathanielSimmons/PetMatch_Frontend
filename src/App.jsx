@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthComponent from '../components/AuthComponent';
 import UserProfileComponent from '../components/UserProfileComponent';
 import PetProfileComponent from '../components/PetProfileComponent';
@@ -8,11 +8,11 @@ import AboutComponent from '../components/AboutComponent';
 import HomeComponent from '../components/HomeComponent';
 import NavBarComponent from '../components/NavBarComponent';
 import { loginUser, logoutUser } from '../api';
+import SignUpComponent from '../components/SignUpComponent';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Since token authentication is removed, handleLogin can be simplified
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
@@ -32,7 +32,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeComponent />} />
         <Route path="/auth" element={<AuthComponent onLogin={handleLogin} />} />
-        {/* You can conditionally render other routes based on isLoggedIn */}
+        <Route path="/signup" element={<SignUpComponent />} />
         {isLoggedIn && (
           <>
             <Route path="/profile" element={<UserProfileComponent />} />
