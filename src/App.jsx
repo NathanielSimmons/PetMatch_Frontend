@@ -9,7 +9,7 @@ import { loginUser, logoutUser } from '../api';
 import SignUpForm from '../forms/SignUpForm';
 import AddPetForm from '../forms/AddPetForm';
 import UpdatePetComponent from '../components/UpdatePetComponent';
-
+import UpdateUserProfileComponent from '../components/UpdateUserProfileComponent';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -39,6 +39,7 @@ const App = () => {
             <Route path="/pet-list" element={<AddPetForm />} />
             <Route path="/match" element={<MatchManagementComponent />} />
             <Route path="/update-pet/:petId" element={<UpdatePetComponent />} />
+            <Route path="/update-profile/:userId" element={UpdateUserProfileComponent} />
 
           </>
         )}
