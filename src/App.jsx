@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthComponent from '../components/AuthComponent';
-import UserProfileComponent from '../components/UserProfileComponent';
-import PetProfileComponent from '../components/PetProfileComponent';
 import MatchManagementComponent from '../components/MatchManagementComponent';
 import AboutComponent from '../components/AboutComponent';
 import HomeComponent from '../components/HomeComponent';
 import NavBarComponent from '../components/NavBarComponent';
 import { loginUser, logoutUser } from '../api';
-import SignUpComponent from '../components/SignUpComponent';
+import SignUpForm from '../forms/SignUpForm';
+import AddPetForm from '../forms/AddPetForm';
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,11 +32,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeComponent />} />
         <Route path="/auth" element={<AuthComponent onLogin={handleLogin} />} />
-        <Route path="/signup" element={<SignUpComponent />} />
+        <Route path="/signup" element={<SignUpForm />} />
         {isLoggedIn && (
           <>
-            <Route path="/profile" element={<UserProfileComponent />} />
-            <Route path="/pet-profile" element={<PetProfileComponent />} />
+            <Route path="/pet-list" element={<AddPetForm />} />
             <Route path="/match" element={<MatchManagementComponent />} />
           </>
         )}

@@ -35,6 +35,15 @@ export const logoutUser = async () => {
   }
 };
 
+export const getUserById = async (userId) => {
+  try {
+    const response = await axios.get(`${baseURL}/users/${userId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to get user by ID');
+  }
+};
+
 export const createPetProfile = async (petData) => {
   try {
     const response = await axios.post(`${baseURL}/pets`, petData);
