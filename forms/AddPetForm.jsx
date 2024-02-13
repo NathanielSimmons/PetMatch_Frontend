@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getAllPets } from '../api';
+import { getAllPets, updatePetProfile, deletePetProfile } from '../api';
 
 const AddPetForm = () => {
   const [petData, setPetData] = useState({
@@ -56,13 +56,45 @@ const AddPetForm = () => {
     }
   };
 
+  const handleUpdatePet = async (petId, updatedPetData) => {
+    try {
+      await updatePetProfile(petId, updatedPetData);
+      // Update the pets state after successful update
+      const updatedPets = pets.map((pet) => {
+        if (pet._id === petId) {
+          return { ...pet, ...updatedPetData };
+        }
+        return pet;
+      });
+      setPets(updatedPets);
+    } catch (error) {
+      console.error('Error updating pet:', error);
+      setErrorMessage('Error updating pet. Please try again.');
+    }
+  };
+
+  const handleDeletePet = async (petId) => {
+    try {
+      await deletePetProfile(petId);
+      // Filter out the deleted pet from the pets state
+      const updatedPets = pets.filter((pet) => pet._id !== petId);
+      setPets(updatedPets);
+    } catch (error) {
+      console.error('Error deleting pet:', error);
+      setErrorMessage('Error deleting pet. Please try again.');
+    }
+  };
+
   return (
-    
-      <div>
+    <div>
       <h2>All Pets</h2>
       <ul>
         {pets.map((pet) => (
-          <li key={pet._id}>{pet.name} - {pet.species}</li>
+          <li key={pet._id}>
+            {pet.name} - {pet.species}
+            <button onClick={() => handleUpdatePet(pet._id, /* updated data */)}>Update</button>
+            <button onClick={() => handleDeletePet(pet._id)}>Delete</button>
+          </li>
         ))}
       </ul>
       <h2>Add a Pet</h2>
