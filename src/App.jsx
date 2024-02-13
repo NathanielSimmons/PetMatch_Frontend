@@ -8,6 +8,7 @@ import NavBarComponent from '../components/NavBarComponent';
 import { loginUser, logoutUser } from '../api';
 import SignUpForm from '../forms/SignUpForm';
 import AddPetForm from '../forms/AddPetForm';
+import UpdatePetComponent from '../components/UpdatePetComponent';
 
 
 const App = () => {
@@ -37,6 +38,8 @@ const App = () => {
           <>
             <Route path="/pet-list" element={<AddPetForm />} />
             <Route path="/match" element={<MatchManagementComponent />} />
+            <Route path="/update-pet" element={<UpdatePetComponent />} />
+
           </>
         )}
         <Route path="/about" element={<AboutComponent />} />
