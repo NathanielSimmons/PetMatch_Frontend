@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getAllPets, updatePetProfile, deletePetProfile } from '../api';
+import { getAllPets, deletePetProfile } from '../api';
+import { Link } from 'react-router-dom';
 
 const AddPetForm = () => {
   const [petData, setPetData] = useState({
@@ -56,23 +57,6 @@ const AddPetForm = () => {
     }
   };
 
-  const handleUpdatePet = async (petId, updatedPetData) => {
-    try {
-      await updatePetProfile(petId, updatedPetData);
-      // Update the pets state after successful update
-      const updatedPets = pets.map((pet) => {
-        if (pet._id === petId) {
-          return { ...pet, ...updatedPetData };
-        }
-        return pet;
-      });
-      setPets(updatedPets);
-    } catch (error) {
-      console.error('Error updating pet:', error);
-      setErrorMessage('Error updating pet. Please try again.');
-    }
-  };
-
   const handleDeletePet = async (petId) => {
     try {
       await deletePetProfile(petId);
@@ -92,7 +76,7 @@ const AddPetForm = () => {
         {pets.map((pet) => (
           <li key={pet._id}>
             {pet.name} - {pet.species}
-            <button onClick={() => handleUpdatePet(pet._id, /* updated data */)}>Update</button>
+            <Link to={`/update-pet/${pet._id}`}>Update</Link>
             <button onClick={() => handleDeletePet(pet._id)}>Delete</button>
           </li>
         ))}
