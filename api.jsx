@@ -40,7 +40,16 @@ export const getUserById = async (userId) => {
     const response = await axios.get(`${baseURL}/users/${userId}`);
     return response.data;
   } catch (error) {
-    throw new Error('Failed to get user by ID');
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const updateUserProfile = async (userId, userData) => {
+  try {
+    const response = await axios.put(`${baseURL}/users/${userId}`, userData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
   }
 };
 

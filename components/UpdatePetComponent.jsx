@@ -37,7 +37,7 @@ const UpdatePetComponent = () => {
     e.preventDefault();
     try {
       await updatePetProfile(petId, petData);
-      navigate('/'); // Redirect to home page after successful update
+      navigate('/pet-list'); // Redirect to home page after successful update
     } catch (error) {
       console.error('Error updating pet:', error);
     }
