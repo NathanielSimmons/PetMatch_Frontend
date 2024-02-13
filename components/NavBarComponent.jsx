@@ -17,7 +17,7 @@ const NavBar = ({ isLoggedIn }) => {
         {isLoggedIn && (
           <>
             <li><Link to="/pet-list">Pets</Link></li>
-            <li><Link to="/update-profile">Update Profile</Link></li>
+            <li><Link to={`/update-profile/${userId}`}>Update Profile</Link></li>
             <li><Link to="/match">Match</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><LogOutButtonComponent /></li>
