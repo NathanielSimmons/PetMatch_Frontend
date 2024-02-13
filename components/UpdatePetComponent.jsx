@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getPetById, updatePetProfile } from './api';
+import { getPetById, updatePetProfile } from '../api';
 
 const UpdatePetComponent = () => {
   const { petId } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate(); // Use useNavigate hook to navigate
   const [petData, setPetData] = useState({
     name: '',
     species: '',
@@ -37,7 +37,7 @@ const UpdatePetComponent = () => {
     e.preventDefault();
     try {
       await updatePetProfile(petId, petData);
-      history.push('/'); // Redirect to home page after successful update
+      navigate('/'); // Redirect to home page after successful update
     } catch (error) {
       console.error('Error updating pet:', error);
     }
@@ -58,7 +58,56 @@ const UpdatePetComponent = () => {
             onChange={handleChange}
           />
         </div>
-        {/* Add input fields for other pet details */}
+        <div>
+          <label htmlFor="species">Species:</label>
+          <input
+            type="text"
+            id="species"
+            name="species"
+            value={petData.species}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="breed">Breed:</label>
+          <input
+            type="text"
+            id="breed"
+            name="breed"
+            value={petData.breed}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            value={petData.age}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="personality">Personality:</label>
+          <input
+            type="text"
+            id="personality"
+            name="personality"
+            value={petData.personality}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="pictures">Pictures:</label>
+          <input
+            type="text"
+            id="pictures"
+            name="pictures"
+            value={petData.pictures}
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">Update Pet</button>
       </form>
     </div>
