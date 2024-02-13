@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { updateUserProfile } from './api';
+import { updateUserProfile } from '../api';
 
-const UpdateUserProfileComponent = () => {
-  const { userId } = useParams();
+const UpdateUserProfileComponent = ({ user }) => {
+ 
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -16,7 +15,7 @@ const UpdateUserProfileComponent = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/users/${userId}`);
+        const response = await axios.get(`http://localhost:4000/api/users/${user?._id}`);
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -24,7 +23,7 @@ const UpdateUserProfileComponent = () => {
     };
 
     fetchUserData();
-  }, [userId]);
+  }, [user?._id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +33,7 @@ const UpdateUserProfileComponent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateUserProfile(userId, userData);
+      await updateUserProfile(user?._id, userData);
       console.log('User profile updated successfully');
     } catch (error) {
       console.error('Error updating user profile:', error);

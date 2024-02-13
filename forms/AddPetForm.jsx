@@ -3,33 +3,42 @@ import axios from 'axios';
 import { getAllPets, deletePetProfile } from '../api';
 import { Link } from 'react-router-dom';
 
-const AddPetForm = () => {
+
+const AddPetForm = ({ user }) => {
+  
   const [petData, setPetData] = useState({
     name: '',
     species: '',
     breed: '',
     age: '',
     personality: '',
-    pictures: ''
+    pictures: '',
+    owner: user?._id
   });
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [pets, setPets] = useState([]);
+  const [userPets, setUserPets] = useState([]);
 
   useEffect(() => {
-    const fetchPets = async () => {
+    const fetchUserPets = async () => {
       try {
         const petsData = await getAllPets();
-        console.log('Fetched pets:', petsData);
-        setPets(petsData);
+        const userPets = petsData.filter(pet => pet.owner === user?._id);
+        setUserPets(userPets);
       } catch (error) {
-        console.error('Error fetching pets:', error);
+        console.error('Error fetching user pets:', error);
       }
     };
 
-    fetchPets();
-  }, []); // Run this effect only once, when the component mounts
-  console.log('Pets state:', pets);
+    fetchUserPets();
+  }, [user]);
+
+  useEffect(() => {
+    setPetData(prevPetData => ({
+      ...prevPetData,
+      owner: user?._id
+    }));
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +55,8 @@ const AddPetForm = () => {
         breed: '',
         age: '',
         personality: '',
-        pictures: ''
+        pictures: '',
+        owner: user?._id
       });
       setSuccessMessage(response.data.message);
       setErrorMessage('');
@@ -60,9 +70,8 @@ const AddPetForm = () => {
   const handleDeletePet = async (petId) => {
     try {
       await deletePetProfile(petId);
-      // Filter out the deleted pet from the pets state
-      const updatedPets = pets.filter((pet) => pet._id !== petId);
-      setPets(updatedPets);
+      const updatedUserPets =userPets.filter(pet => pet._id !== petId);
+      setUserPets(updatedUserPets);
     } catch (error) {
       console.error('Error deleting pet:', error);
       setErrorMessage('Error deleting pet. Please try again.');
@@ -71,9 +80,9 @@ const AddPetForm = () => {
 
   return (
     <div>
-      <h2>All Pets</h2>
+      <h2>Your Pets</h2>
       <ul>
-        {pets.map((pet) => (
+        {userPets.map((pet) => (
           <li key={pet._id}>
             {pet.name} - {pet.species}
             <Link to={`/update-pet/${pet._id}`}>Update</Link>

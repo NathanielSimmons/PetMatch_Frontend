@@ -14,6 +14,7 @@ export const signupUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(`${baseURL}/users/login`, userData);
+    localStorage.setItem("user",JSON.stringify(response.data))
     return response.data;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.error) {
@@ -29,6 +30,7 @@ export const loginUser = async (userData) => {
 export const logoutUser = async () => {
   try {
     await axios.post(`${baseURL}/users/logout`);
+    localStorage.removeItem("user")
     window.location.replace('/');
   } catch (error) {
     throw new Error(error.response.data.error);

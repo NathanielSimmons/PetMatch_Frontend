@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButtonComponent from './LogOutButtonComponent';
 
-const NavBar = ({ isLoggedIn }) => {
+const NavBar = ({ isLoggedIn, user }) => {
+    
   return (
     <nav>
       <ul>
@@ -17,7 +18,7 @@ const NavBar = ({ isLoggedIn }) => {
         {isLoggedIn && (
           <>
             <li><Link to="/pet-list">Pets</Link></li>
-            <li><Link to={`/update-profile/${userId}`}>Update Profile</Link></li>
+            <li><Link to={`/update-profile/${ user?._id }`}>Update Profile</Link></li>
             <li><Link to="/match">Match</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><LogOutButtonComponent /></li>
