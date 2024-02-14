@@ -56,7 +56,7 @@ const MatchComponent = () => {
     <div>
       {currentPet && (
         <div>
-          <img src={currentPet.picture} alt={currentPet.name} />
+          <img src={currentPet.pictures} alt={currentPet.name} />
           <h3>{currentPet.name}</h3>
           <button onClick={() => handleLike(currentPet._id)}>Like</button>
           <button onClick={() => handleSkip(currentPet._id)}>Skip</button>
@@ -66,7 +66,7 @@ const MatchComponent = () => {
       <ul>
         {matchedPets.map((pet) => (
           <li key={pet._id}>
-            <img src={pet.picture} alt={pet.name} />
+            <img src={pet.pictures} alt={pet.name} />
             <span>{pet.name}</span>
           </li>
         ))}

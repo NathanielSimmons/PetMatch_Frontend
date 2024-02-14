@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButtonComponent from './LogOutButtonComponent';
+import '../src/App.css'
+
 
 const NavBar = ({ isLoggedIn, user }) => {
     
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <ul className="navbar-list">
         <li><Link to="/">Home</Link></li>
         {!isLoggedIn && (
           <>
