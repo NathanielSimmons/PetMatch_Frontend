@@ -99,3 +99,39 @@ export const deletePetProfile = async (petId) => {
     throw new Error(error.response.data.error);
   }
 };
+
+export const getPetsForMatching = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/match/pets`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const likePet = async (petId) => {
+  try {
+    const response = await axios.post(`${baseURL}/match/${petId}/like`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const skipPet = async (petId) => {
+  try {
+    const response = await axios.post(`${baseURL}/match/${petId}/skip`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const getMatchedPets = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/match/matched-pets`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
