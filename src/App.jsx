@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthComponent from '../components/AuthComponent';
-import MatchManagementComponent from '../components/MatchManagementComponent';
+import MatchComponent from '../components/MatchComponent';
 import AboutComponent from '../components/AboutComponent';
 import HomeComponent from '../components/HomeComponent';
 import NavBarComponent from '../components/NavBarComponent';
@@ -47,7 +47,7 @@ console.log("user: ", user)
         {isLoggedIn && (
           <>
             <Route path="/pet-list" element={<AddPetForm user={user}/>} />
-            <Route path="/match" element={<MatchManagementComponent />} />
+            <Route path="/match" element={<MatchComponent />} />
             <Route path="/update-pet/:petId" element={<UpdatePetComponent />} />
             <Route path="/update-profile/:userId" element={<UpdateUserProfileComponent user={user}/>} />
 
