@@ -109,9 +109,9 @@ export const getPetsForMatching = async () => {
   }
 };
 
-export const likePet = async (petId) => {
+export const likePet = async (petId, body) => {
   try {
-    const response = await axios.post(`${baseURL}/match/${petId}/like`);
+    const response = await axios.post(`${baseURL}/match/${petId}/like`, body);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);

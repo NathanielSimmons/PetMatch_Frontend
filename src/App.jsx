@@ -48,7 +48,7 @@ console.log("user: ", user)
         {isLoggedIn && (
           <>
             <Route path="/pet-list" element={<AddPetForm user={user}/>} />
-            <Route path="/match" element={<MatchComponent />} />
+            <Route path="/match" element={<MatchComponent user={user}/>} />
             <Route path="/update-pet/:petId" element={<UpdatePetComponent />} />
             <Route path="/update-profile/:userId" element={<UpdateUserProfileComponent user={user}/>} />
 
