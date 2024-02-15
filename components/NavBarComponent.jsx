@@ -4,11 +4,10 @@ import LogOutButtonComponent from './LogOutButtonComponent';
 import '../src/App.css'
 
 
-const NavBar = ({ isLoggedIn, user }) => {
-    
+const NavBarComponent = ({ isLoggedIn, user }) => {
   return (
     <nav className="navbar">
-      <ul className="navbar-list">
+      <ul className="nav-list">
         <li><Link to="/">Home</Link></li>
         {!isLoggedIn && (
           <>
@@ -23,7 +22,7 @@ const NavBar = ({ isLoggedIn, user }) => {
             <li><Link to={`/update-profile/${ user?._id }`}>Update Profile</Link></li>
             <li><Link to="/match">Match</Link></li>
             <li><Link to="/about">About</Link></li>
-            <li><LogOutButtonComponent /></li>
+            <li className="logout-btn"><LogOutButtonComponent /></li>
           </>
         )}
       </ul>
@@ -31,5 +30,4 @@ const NavBar = ({ isLoggedIn, user }) => {
   );
 }
 
-export default NavBar;
-
+export default NavBarComponent;

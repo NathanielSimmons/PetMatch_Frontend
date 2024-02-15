@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api';
-
+import '../src/App.css'
 
 const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
