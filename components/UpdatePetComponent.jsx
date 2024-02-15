@@ -45,71 +45,79 @@ const UpdatePetComponent = () => {
 
   return (
     <div>
-      <h2>Update Pet</h2>
+  <h2 className='form-title'>Update Pet</h2>
+    <div className='update-profile-pet'>
       <form onSubmit={handleSubmit}>
         {/* Input fields for pet details */}
-        <div>
-          <label htmlFor="name">Name:</label>
+        <div className='form-group'>
+          <label htmlFor="name" className="form-label">Name:</label>
           <input
             type="text"
             id="name"
             name="name"
             value={petData.name}
             onChange={handleChange}
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="species">Species:</label>
+        <div className='form-group'>
+          <label htmlFor="species" className="form-label">Species:</label>
           <input
             type="text"
             id="species"
             name="species"
             value={petData.species}
             onChange={handleChange}
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="breed">Breed:</label>
+        <div className='form-group'>
+          <label htmlFor="breed" className="form-label">Breed:</label>
           <input
             type="text"
             id="breed"
             name="breed"
             value={petData.breed}
             onChange={handleChange}
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="age">Age:</label>
+        <div className='form-group'>
+          <label htmlFor="age" className="form-label">Age:</label>
           <input
             type="number"
             id="age"
             name="age"
             value={petData.age}
             onChange={handleChange}
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="personality">Personality:</label>
+        <div className='form-group'>
+          <label htmlFor="personality" className="form-label">Personality:</label>
           <input
             type="text"
             id="personality"
             name="personality"
             value={petData.personality}
             onChange={handleChange}
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="pictures">Pictures:</label>
+        <div className='form-group'>
+          <label htmlFor="pictures" className="form-label">Pictures:</label>
           <input
             type="text"
             id="pictures"
             name="pictures"
             value={petData.pictures}
             onChange={handleChange}
+            className="form-input"
           />
         </div>
-        <button type="submit">Update Pet</button>
+        <button type="submit" className='form-button'>Update Pet</button>
       </form>
+    </div>
     </div>
   );
 };

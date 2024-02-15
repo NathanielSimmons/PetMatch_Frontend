@@ -42,8 +42,9 @@ const UpdateUserProfileComponent = ({ user }) => {
   };
 
   return (
+    <div>
+    <h2 className="form-title">Update User Profile</h2>
     <div className="update-profile">
-      <h2 className="form-title">Update User Profile</h2>
       <form onSubmit={handleSubmit} className="update-profile-form">
         <div className="form-group">
           <label htmlFor="username" className="form-label">Username:</label>
@@ -55,7 +56,7 @@ const UpdateUserProfileComponent = ({ user }) => {
             onChange={handleChange}
             required
             className="form-input"
-          />
+            />
         </div>
         <div className="form-group">
           <label htmlFor="email" className="form-label">Email:</label>
@@ -67,7 +68,7 @@ const UpdateUserProfileComponent = ({ user }) => {
             onChange={handleChange}
             required
             className="form-input"
-          />
+            />
         </div>
         <div className="form-group">
           <label htmlFor="password" className="form-label">Password:</label>
@@ -79,7 +80,7 @@ const UpdateUserProfileComponent = ({ user }) => {
             onChange={handleChange}
             required
             className="form-input"
-          />
+            />
         </div>
         <div className="form-group">
           <label htmlFor="profilePic" className="form-label">Profile Picture:</label>
@@ -90,7 +91,7 @@ const UpdateUserProfileComponent = ({ user }) => {
             value={userData.profilePic}
             onChange={handleChange}
             className="form-input"
-          />
+            />
         </div>
         <div className="form-group">
           <label htmlFor="aboutMe" className="form-label">About Me:</label>
@@ -100,10 +101,11 @@ const UpdateUserProfileComponent = ({ user }) => {
             value={userData.aboutMe}
             onChange={handleChange}
             className="form-textarea"
-          ></textarea>
+            ></textarea>
         </div>
         <button type="submit" className="form-button">Update Profile</button>
       </form>
+    </div>
     </div>
   );
 };

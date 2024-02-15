@@ -79,7 +79,7 @@ const AddPetForm = ({ user }) => {
 
   return (
     <div>
-      <h2>Your Pets</h2>
+      <h2 className='form-title'>Your Pets</h2>
       <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
         {userPets.map((pet) => (
           <div key={pet._id} className="pet-container" style={{ textAlign: 'center', margin: '10px', padding: '10px', border: '1px solid #ccc' }}>
@@ -92,7 +92,7 @@ const AddPetForm = ({ user }) => {
         ))}
       </div>
       <div className="form-group">
-      <h2>Add a Pet</h2>
+      <h2 className='form-title'>Add a Pet</h2>
 <form onSubmit={handleSubmit} className="pet-form">
   <div className="form-group">
     <label htmlFor="name">Name:</label>
