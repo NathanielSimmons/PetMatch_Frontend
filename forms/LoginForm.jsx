@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api';
 
+
 const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,28 +23,31 @@ const LoginForm = ({ onLogin }) => {
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      <div>
-        <label htmlFor="email">Email:</label>
+      <h2 className="form-title">Login</h2>
+      <div className="form-group">
+        <label htmlFor="email" className="form-label">Email:</label>
         <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
+          className="form-input"
         />
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
+      <div className="form-group">
+        <label htmlFor="password" className="form-label">Password:</label>
         <input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
+          className="form-input"
         />
       </div>
-      <button type="submit">Login</button>
-      {error && <p>{error}</p>}
+      <button type="submit" className="form-button">Login</button>
+      {error && <p className="form-error">{error}</p>}
     </form>
   );
 };
