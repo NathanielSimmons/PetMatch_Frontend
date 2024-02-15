@@ -5,7 +5,7 @@ import { getPetById, updatePetProfile } from '../api';
 
 const UpdatePetComponent = () => {
   const { petId } = useParams();
-  const navigate = useNavigate(); // Use useNavigate hook to navigate
+  const navigate = useNavigate(); 
   const [petData, setPetData] = useState({
     name: '',
     species: '',
@@ -37,7 +37,7 @@ const UpdatePetComponent = () => {
     e.preventDefault();
     try {
       await updatePetProfile(petId, petData);
-      navigate('/pet-list'); // Redirect to home page after successful update
+      navigate('/pet-list'); 
     } catch (error) {
       console.error('Error updating pet:', error);
     }
@@ -48,7 +48,7 @@ const UpdatePetComponent = () => {
   <h2 className='form-title'>Update Pet</h2>
     <div className='update-profile-pet'>
       <form onSubmit={handleSubmit}>
-        {/* Input fields for pet details */}
+      
         <div className='form-group'>
           <label htmlFor="name" className="form-label">Name:</label>
           <input

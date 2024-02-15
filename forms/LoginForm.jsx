@@ -14,8 +14,8 @@ const LoginForm = ({ onLogin }) => {
     try {
       const userData = { email, password };
       await loginUser(userData);
-      onLogin(); // Notify parent component about successful login
-      navigate('/'); // Navigate to the home page
+      onLogin(); 
+      navigate('/'); 
     } catch (error) {
       setError('Invalid email or password. Please try again.');
     }

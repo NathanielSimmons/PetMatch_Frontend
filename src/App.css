@@ -59,44 +59,44 @@
 }
 
 .user-avatar {
-  width: 30px; /* Adjust size as needed */
-  height: 30px; /* Adjust size as needed */
+  width: 30px; 
+  height: 30px; 
   border-radius: 50%;
   margin-right: 10px;
 }
 
 .welcome-msg {
-  font-size: 16px; /* Adjust size as needed */
+  font-size: 16px; 
 }
 .logout-btn {
-  margin-left: auto; /* Push the logout button to the right */
+  margin-left: auto; 
 }
 
 .logout-btn button {
-  background-color: navy; /* Set background color for the logout button */
-  color: white; /* Set text color for the logout button */
-  border: none; /* Remove border */
-  padding: 8px 16px; /* Add padding to the logout button */
-  border-radius: 4px; /* Add border radius */
-  cursor: pointer; /* Add cursor pointer on hover */
+  background-color: navy; 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 4px; 
+  cursor: pointer; 
 }
 
 .logout-btn button:hover {
-  background-color: navy; /* Change background color on hover */
+  background-color: navy; 
 }
 
 .home-container {
   display: flex;
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
-  height: 100vh; /* Set the height of the container to the full viewport height */
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
 }
 
 .home-image {
-  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
-  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
-  width: auto; /* Allow the image to scale based on the container's width */
-  height: auto; /* Allow the image to scale based on the container's height */
+  max-width: 100%; 
+  max-height: 100%; 
+  width: auto; 
+  height: auto; 
 }
 
 .about-heading {
@@ -105,7 +105,7 @@
 
 .about-paragraph {
   color: black;
-  font-weight: bold; /* Make the font bold */
+  font-weight: bold; 
 }
 
 .login-form {
@@ -225,8 +225,8 @@
 }
 
 .pet-image {
-  width: 150px; /* Adjust the size as needed */
-  height: 150px; /* Adjust the size as needed */
+  width: 150px; 
+  height: 150px; 
   object-fit: cover;
 }
 
@@ -262,11 +262,11 @@
 }
 
 .pet-image {
-  width: 200px; /* Adjust as needed */
-  height: 200px; /* Adjust as needed */
+  width: 200px; 
+  height: 200px; 
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .button-container {
@@ -289,8 +289,8 @@
 }
 
 .matched-pet-image {
-  width: 100px; /* Adjust as needed */
-  height: 100px; /* Adjust as needed */
+  width: 100px; 
+  height: 100px; 
   object-fit: cover;
   border-radius: 50%;
 }
