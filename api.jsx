@@ -18,10 +18,8 @@ export const loginUser = async (userData) => {
     return response.data;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.error) {
-      // If the server responded with an error message, throw it
       throw new Error(error.response.data.error);
     } else {
-      // If there was an unexpected error or no error message from the server, throw a generic error
       throw new Error('An error occurred while logging in');
     }
   }
