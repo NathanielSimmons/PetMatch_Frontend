@@ -53,20 +53,22 @@ const MatchComponent = () => {
   const currentPet = petsForMatching[currentPetIndex];
 
   return (
-    <div>
+    <div className="match-container">
       {currentPet && (
-        <div>
-          <img src={currentPet.pictures} alt={currentPet.name} />
+        <div className="current-pet">
+          <img src={currentPet.pictures} alt={currentPet.name} className="pet-image" />
           <h3>{currentPet.name}</h3>
-          <button onClick={() => handleLike(currentPet._id)}>Like</button>
-          <button onClick={() => handleSkip(currentPet._id)}>Skip</button>
+          <div className="button-container">
+            <button onClick={() => handleLike(currentPet._id)}>Like</button>
+            <button onClick={() => handleSkip(currentPet._id)}>Skip</button>
+          </div>
         </div>
       )}
       <h2>Matched Pets</h2>
-      <ul>
+      <ul className="matched-pets">
         {matchedPets.map((pet) => (
           <li key={pet._id}>
-            <img src={pet.pictures} alt={pet.name} />
+            <img src={pet.pictures} alt={pet.name} className="matched-pet-image" />
             <span>{pet.name}</span>
           </li>
         ))}
