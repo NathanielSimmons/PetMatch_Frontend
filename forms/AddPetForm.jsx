@@ -3,9 +3,7 @@ import axios from 'axios';
 import { getAllPets, deletePetProfile } from '../api';
 import { Link } from 'react-router-dom';
 
-
 const AddPetForm = ({ user }) => {
-  
   const [petData, setPetData] = useState({
     name: '',
     species: '',
@@ -70,7 +68,7 @@ const AddPetForm = ({ user }) => {
   const handleDeletePet = async (petId) => {
     try {
       await deletePetProfile(petId);
-      const updatedUserPets =userPets.filter(pet => pet._id !== petId);
+      const updatedUserPets = userPets.filter(pet => pet._id !== petId);
       setUserPets(updatedUserPets);
     } catch (error) {
       console.error('Error deleting pet:', error);
@@ -81,18 +79,20 @@ const AddPetForm = ({ user }) => {
   return (
     <div>
       <h2>Your Pets</h2>
-      <ul>
+      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
         {userPets.map((pet) => (
-          <li key={pet._id}>
-            {pet.name} - {pet.species}
+          <div key={pet._id} className="pet-container" style={{ textAlign: 'center', margin: '10px', padding: '10px', border: '1px solid #ccc' }}>
+            <h3>{pet.name}</h3>
+            <img src={pet.pictures} alt={pet.name} className="pet-image" style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
+            <p>Breed: {pet.breed}</p>
             <Link to={`/update-pet/${pet._id}`}>Update</Link>
             <button onClick={() => handleDeletePet(pet._id)}>Delete</button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
       <h2>Add a Pet</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}>
+      <div>
           <label htmlFor="name">Name:</label>
           <input
             type="text"

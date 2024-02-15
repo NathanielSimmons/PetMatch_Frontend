@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { updateUserProfile } from '../api';
+import '../src/App.css'
 
 const UpdateUserProfileComponent = ({ user }) => {
  
@@ -41,11 +42,11 @@ const UpdateUserProfileComponent = ({ user }) => {
   };
 
   return (
-    <div>
-      <h2>Update User Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
+    <div className="update-profile">
+      <h2 className="form-title">Update User Profile</h2>
+      <form onSubmit={handleSubmit} className="update-profile-form">
+        <div className="form-group">
+          <label htmlFor="username" className="form-label">Username:</label>
           <input
             type="text"
             id="username"
@@ -53,10 +54,11 @@ const UpdateUserProfileComponent = ({ user }) => {
             value={userData.username}
             onChange={handleChange}
             required
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="email">Email:</label>
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">Email:</label>
           <input
             type="email"
             id="email"
@@ -64,10 +66,11 @@ const UpdateUserProfileComponent = ({ user }) => {
             value={userData.email}
             onChange={handleChange}
             required
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">Password:</label>
           <input
             type="password"
             id="password"
@@ -75,28 +78,31 @@ const UpdateUserProfileComponent = ({ user }) => {
             value={userData.password}
             onChange={handleChange}
             required
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="profilePic">Profile Picture:</label>
+        <div className="form-group">
+          <label htmlFor="profilePic" className="form-label">Profile Picture:</label>
           <input
             type="text"
             id="profilePic"
             name="profilePic"
             value={userData.profilePic}
             onChange={handleChange}
+            className="form-input"
           />
         </div>
-        <div>
-          <label htmlFor="aboutMe">About Me:</label>
+        <div className="form-group">
+          <label htmlFor="aboutMe" className="form-label">About Me:</label>
           <textarea
             id="aboutMe"
             name="aboutMe"
             value={userData.aboutMe}
             onChange={handleChange}
-          />
+            className="form-textarea"
+          ></textarea>
         </div>
-        <button type="submit">Update Profile</button>
+        <button type="submit" className="form-button">Update Profile</button>
       </form>
     </div>
   );
