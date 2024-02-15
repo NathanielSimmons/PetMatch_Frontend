@@ -67,6 +67,15 @@
   height: auto; /* Allow the image to scale based on the container's height */
 }
 
+.about-heading {
+  color: navy;
+}
+
+.about-paragraph {
+  color: green;
+  font-weight: bold; /* Make the font bold */
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
