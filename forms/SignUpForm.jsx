@@ -19,7 +19,7 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/api/users/signup', formData);
+      const response = await axios.post('https://pet-match-backend.vercel.app/api/users/signup', formData);
       if (response.status === 201) {
         window.location.href = '/auth';
       }
