@@ -12,6 +12,7 @@ const MatchComponent = ({user}) => {
     const fetchPets = async () => {
       try {
         const pets = await getPetsForMatching();
+        console.log(pets)
         const filteredPets = pets.filter(pet => pet.owner !== user?._id);
         setPetsForMatching(filteredPets);
       } catch (error) {
@@ -28,24 +29,26 @@ const MatchComponent = ({user}) => {
       setCurrentPetIndex((prevIndex) => prevIndex + 1);
     } catch (error) {
       console.error(`Error ${action === likePet ? 'liking' : 'skipping'} pet:`, error);
+      setCurrentPetIndex((prevIndex) => prevIndex + 1);
     }
   };
 
   useEffect(() => {
-    const fetchMatchedPets = async () => {
-      try {
-        const pets = await getMatchedPets();
-        setMatchedPets(pets);
-      } catch (error) {
-        console.error('Error fetching matched pets:', error);
-      }
-    };
-
+    
     fetchMatchedPets();
   }, []);
+  
+  const fetchMatchedPets = async () => {
+    try {
+      const pets = await getMatchedPets(user?._id);
+      setMatchedPets(pets);
+    } catch (error) {
+      console.error('Error fetching matched pets:', error);
+    }
+  };
 
   const currentPet = petsForMatching[currentPetIndex];
-
+  
   return (
     <div className="match-container">
       {currentPet && (
@@ -53,7 +56,7 @@ const MatchComponent = ({user}) => {
           <img src={currentPet.pictures} alt={currentPet.name} className="pet-image" />
           <h3>{currentPet.name}</h3>
           <div className="button-container">
-            <button onClick={() => handleLikeOrSkip(currentPet._id, likePet, {userId: user?._id})}>Like</button>
+            <button onClick={() => handleLikeOrSkip(currentPet._id, likePet, {userId: user?._id})} disabled={currentPet.owner === user?._id}>Like</button>
             <button onClick={() => handleLikeOrSkip(currentPet._id, skipPet, {userId: user?._id})}>Skip</button>
           </div>
         </div>
@@ -61,9 +64,9 @@ const MatchComponent = ({user}) => {
       <h2>Matched Pets</h2>
       <ul className="matched-pets">
         {matchedPets.map((pet) => (
-          <li key={pet._id}>
-            <img src={pet.pictures} alt={pet.name} className="matched-pet-image" />
-            <span>{pet.name}</span>
+          <li key={pet?._id}>
+            <img src={pet?.pictures} alt={pet?.name} className="matched-pet-image" />
+            <span>{pet?.name}</span>
           </li>
         ))}
       </ul>

@@ -101,6 +101,7 @@ export const deletePetProfile = async (petId) => {
 export const getPetsForMatching = async () => {
   try {
     const response = await axios.get(`${baseURL}/match/pets`);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -125,10 +126,23 @@ export const skipPet = async (petId) => {
   }
 };
 
-export const getMatchedPets = async () => {
+export const getMatchedPets = async (userId) => {
+  console.log(userId)
   try {
-    const response = await axios.get(`${baseURL}/match/matched-pets`);
-    return response.data;
+    const response = await axios.get(`${baseURL}/pets`);
+    let matchedArray = []
+    
+    response.data.map((res)=>{
+      
+      res.likedBy.map((banana)=>{
+        
+        if (banana===userId){
+          matchedArray.push(res)
+        }
+      })
+    })
+
+return matchedArray;
   } catch (error) {
     throw new Error(error.response.data.error);
   }
