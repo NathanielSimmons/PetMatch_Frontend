@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://limitless-everglades-85536-88a220f7cf6e.herokuapp.com';
+const baseURL = 'https://limitless-everglades-85536-88a220f7cf6e.herokuapp.com/api';
 
 export const signupUser = async (userData) => {
   try {
