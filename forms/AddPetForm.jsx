@@ -47,7 +47,7 @@ const AddPetForm = ({ user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://limitless-everglades-85536-88a220f7cf6e.herokuapp.com/api/pets', petData);
+      const response = await axios.post('https://petmatch-backend-1251cc59e577.herokuapp.com/api/pets', petData);
       setPetData({
         name: '',
         species: '',

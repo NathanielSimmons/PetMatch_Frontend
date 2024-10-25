@@ -16,7 +16,7 @@ const UpdateUserProfileComponent = ({ user }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`https://limitless-everglades-85536-88a220f7cf6e.herokuapp.com/api/users/${user?._id}`);
+        const response = await axios.get(`https://petmatch-backend-1251cc59e577.herokuapp.com/api/users/${user?._id}`);
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);

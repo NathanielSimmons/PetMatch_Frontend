@@ -18,7 +18,7 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://limitless-everglades-85536-88a220f7cf6e.herokuapp.com/api/users/signup', formData);
+      const response = await axios.post('https://petmatch-backend-1251cc59e577.herokuapp.com/api/users/signup', formData);
       if (response.status === 201) {
         window.location.href = '/auth';
       }
