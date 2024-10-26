@@ -55,7 +55,7 @@ export const updateUserProfile = async (userId, userData) => {
 
 export const createPetProfile = async (petData) => {
   try {
-    const response = await axios.post(`${baseURL}/pets`, petData);
+    const response = await axios.post(`${baseURL}/pets/pets`, petData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -64,7 +64,7 @@ export const createPetProfile = async (petData) => {
 
 export const getAllPets = async () => {
   try {
-    const response = await axios.get(`${baseURL}/pets`);
+    const response = await axios.get(`${baseURL}/pets/pets`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -73,7 +73,7 @@ export const getAllPets = async () => {
 
 export const getPetById = async (petId) => {
   try {
-    const response = await axios.get(`${baseURL}/pets/${petId}`);
+    const response = await axios.get(`${baseURL}/pets/pets/${petId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -82,7 +82,7 @@ export const getPetById = async (petId) => {
 
 export const updatePetProfile = async (petId, petData) => {
   try {
-    const response = await axios.put(`${baseURL}/pets/${petId}`, petData);
+    const response = await axios.put(`${baseURL}/pets/pets/${petId}`, petData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -91,7 +91,7 @@ export const updatePetProfile = async (petId, petData) => {
 
 export const deletePetProfile = async (petId) => {
   try {
-    const response = await axios.delete(`${baseURL}/pets/${petId}`);
+    const response = await axios.delete(`${baseURL}/pets/pets/${petId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -129,7 +129,7 @@ export const skipPet = async (petId) => {
 export const getMatchedPets = async (userId) => {
   console.log(userId)
   try {
-    const response = await axios.get(`${baseURL}/pets`);
+    const response = await axios.get(`${baseURL}/pets/pets`);
     let matchedArray = []
     
     response.data.map((res)=>{
