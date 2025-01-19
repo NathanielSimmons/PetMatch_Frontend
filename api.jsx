@@ -1,10 +1,17 @@
 import axios from 'axios';
 
-const baseURL = 'https://petmatch-backend-1251cc59e577.herokuapp.com/api';
+const baseURL = import.meta.env.VITE_NODE_ENV === "development" ? "http://localhost:4000/api" : 'https://petmatch-backend-1251cc59e577.herokuapp.com/api';
 
-export const signupUser = async (userData) => {
+export const signupUser = async (userData, onProgress) => {
   try {
-    const response = await axios.post(`${baseURL}/users/signup`, userData);
+    const response = await axios.post(`${baseURL}/users/signup`, userData, {
+      onUploadProgress: (progressEvent) => {
+        if (progressEvent.total) {
+          const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+          onProgress(progress);
+        }
+      }
+    });
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -14,7 +21,7 @@ export const signupUser = async (userData) => {
 export const loginUser = async (userData) => {
   try {
     const response = await axios.post(`${baseURL}/users/login`, userData);
-    localStorage.setItem("user",JSON.stringify(response.data))
+    localStorage.setItem("user", JSON.stringify(response.data))
     return response.data;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.error) {
@@ -37,7 +44,7 @@ export const logoutUser = async () => {
 
 export const getUserById = async (userId) => {
   try {
-    const response = await axios.get(`${baseURL}/users/${userId}`);
+    const response = await axios.get(`${baseURL}/users/get-user/${userId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -46,7 +53,8 @@ export const getUserById = async (userId) => {
 
 export const updateUserProfile = async (userId, userData) => {
   try {
-    const response = await axios.put(`${baseURL}/users/${userId}`, userData);
+    const response = await axios.put(`${baseURL}/users/update-user/${userId}`, userData);
+    localStorage.setItem("user", JSON.stringify(response.data.user))
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -55,7 +63,7 @@ export const updateUserProfile = async (userId, userData) => {
 
 export const createPetProfile = async (petData) => {
   try {
-    const response = await axios.post(`${baseURL}/pets/pets`, petData);
+    const response = await axios.post(`${baseURL}/pets/create-pet`, petData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -64,7 +72,25 @@ export const createPetProfile = async (petData) => {
 
 export const getAllPets = async () => {
   try {
-    const response = await axios.get(`${baseURL}/pets/pets`);
+    const response = await axios.get(`${baseURL}/pets/get-all-pets`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const getPetsPicturesForDisplay = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/pets/get-pets-pictures-for-display`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const getUserPets = async (userId) => {
+  try {
+    const response = await axios.get(`${baseURL}/pets/get-user-pets/${userId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -73,7 +99,7 @@ export const getAllPets = async () => {
 
 export const getPetById = async (petId) => {
   try {
-    const response = await axios.get(`${baseURL}/pets/pets/${petId}`);
+    const response = await axios.get(`${baseURL}/pets/get-pet/${petId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -82,7 +108,7 @@ export const getPetById = async (petId) => {
 
 export const updatePetProfile = async (petId, petData) => {
   try {
-    const response = await axios.put(`${baseURL}/pets/pets/${petId}`, petData);
+    const response = await axios.put(`${baseURL}/pets/update-pet/${petId}`, petData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -91,17 +117,16 @@ export const updatePetProfile = async (petId, petData) => {
 
 export const deletePetProfile = async (petId) => {
   try {
-    const response = await axios.delete(`${baseURL}/pets/pets/${petId}`);
+    const response = await axios.delete(`${baseURL}/pets/delete-pet/${petId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
   }
 };
 
-export const getPetsForMatching = async () => {
+export const getPetsForMatching = async (userId) => {
   try {
-    const response = await axios.get(`${baseURL}/match/pets`);
-    console.log(response.data)
+    const response = await axios.get(`${baseURL}/match/get-pets-for-matching/${userId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -110,7 +135,7 @@ export const getPetsForMatching = async () => {
 
 export const likePet = async (petId, body) => {
   try {
-    const response = await axios.post(`${baseURL}/match/${petId}/like`, body);
+    const response = await axios.post(`${baseURL}/match/like-pet/${petId}`, body);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
@@ -119,30 +144,39 @@ export const likePet = async (petId, body) => {
 
 export const skipPet = async (petId) => {
   try {
-    const response = await axios.post(`${baseURL}/match/${petId}/skip`);
+    const response = await axios.post(`${baseURL}/match/skip-pet/${petId}`);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
   }
 };
 
-export const getMatchedPets = async (userId) => {
-  console.log(userId)
-  try {
-    const response = await axios.get(`${baseURL}/pets/pets`);
-    let matchedArray = []
-    
-    response.data.map((res)=>{
-      
-      res.likedBy.map((banana)=>{
-        
-        if (banana===userId){
-          matchedArray.push(res)
-        }
-      })
-    })
+// export const getMatchedPets = async (userId) => {
+//   try {
+//     const response = await axios.get(`${baseURL}/pets/get-all-pets`);
+//     let matchedArray = []
 
-return matchedArray;
+//     response.data.map((pet) => {
+
+//       pet.likedBy.map((likedByUser) => {
+
+//         if (likedByUser === userId) {
+//           matchedArray.push(pet)
+//         }
+//       })
+//     })
+
+//     console.log('Matched Array: ', matchedArray);
+//     return matchedArray;
+//   } catch (error) {
+//     throw new Error(error.response.data.error);
+//   }
+// };
+
+export const getMatchedPets = async (userId) => {
+  try {
+    const response = await axios.get(`${baseURL}/match/get-matched-pets/${userId}`);
+    return response.data;
   } catch (error) {
     throw new Error(error.response.data.error);
   }

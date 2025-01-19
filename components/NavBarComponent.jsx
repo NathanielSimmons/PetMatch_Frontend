@@ -6,33 +6,33 @@ import '../src/App.css'
 const NavBarComponent = ({ isLoggedIn, user }) => {
   return (
     <nav className="navbar">
-      <ul className="nav-list">
-        <li className="user-info">
+      <div className="nav-list">
+        <div className="user-info">
           {isLoggedIn && user && (
             <>
               <img src={user.profilePic} alt="User" className="user-avatar" />
-              <span className="welcome-msg">Welcome {user.username}!</span>
+              <span className="welcome-msg">Welcome {user.name || user.username}!</span>
             </>
           )}
-        </li>
-        <li><Link to="/">Home</Link></li>
+        </div>
+        <div><Link to="/">Home</Link></div>
         {!isLoggedIn && (
           <>
-            <li><Link to="/auth">Login</Link></li>
-            <li><Link to="/signup">Sign Up</Link></li>
-            <li><Link to="/about">About</Link></li>
+            <div><Link to="/auth">Login</Link></div>
+            <div><Link to="/signup">Sign Up</Link></div>
+            <div><Link to="/about">About</Link></div>
           </>
         )}
         {isLoggedIn && (
           <>
-            <li><Link to="/pet-list">Pets</Link></li>
-            <li><Link to={`/update-profile/${user?._id}`}>Update Profile</Link></li>
-            <li><Link to="/match">Match</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li className="logout-btn"><LogOutButtonComponent /></li>
+            <div><Link to="/pet-list">Pets</Link></div>
+            <div><Link to={`/update-profile`}>Update Profile</Link></div>
+            <div><Link to="/match">Match</Link></div>
+            <div><Link to="/about">About</Link></div>
+            <div className="logout-btn"><LogOutButtonComponent /></div>
           </>
         )}
-      </ul>
+      </div>
     </nav>
   );
 }

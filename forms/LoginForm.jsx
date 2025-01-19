@@ -46,7 +46,7 @@ const LoginForm = ({ onLogin }) => {
           className="form-input"
         />
       </div>
-      <button type="submit" className="form-button">Login</button>
+      <button type="submit" className="form-button button">Login</button>
       {error && <p className="form-error">{error}</p>}
     </form>
   );
