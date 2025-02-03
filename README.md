@@ -11,7 +11,7 @@ Welcome to PetMatch, where furry friends find companionship! PetMatch is a web a
 ## Features
 
 - **Pet Profiles**: Create detailed profiles for your pets, including photos, breed information, and personality traits.
-- **Matching Algorithm**: PetMatch uses a sophisticated matching algorithm to suggest compatible pets based on factors such as species, age, and location.
+- **Matching Algorithm**: PetMatch uses a sophisticated matching algorithm to display potential matches in the nearby area.
 - **Privacy and Security**: Rest assured that your personal information and pet's details are kept secure on PetMatch.
 
 ## Future Enhancements
